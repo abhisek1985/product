@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSV file upload</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <script src="js/script.js"></script>
+    <script type = "text/javascript"
+         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+</head>
+<body>
+    <form id="file_upload_form" enctype="multipart/form-data">
+        <div>
+            <table>
+                <tr>
+                    <td><label id="csv_file_label">Please select CSV file </label></td>
+                    <td><input type="file" id="csv_file_input"/></td>
+                </tr>
+                <tr>
+                    <td><input type="button" id="csv_file_button" value="Upload"
+                               onclick="fileUpload()"/></td>
+                </tr>
+            </table>
+        </div>
+</form>
+<script>
+    function fileUpload()
+    {
+        var x = document.getElementById("csv_file_input");
+        alert(x);
+        if (x.files.length == 0)
+        {
+            alert("No file is Selected");
+        }
+        else
+        {
+            var file = x.files[0];
+            console.log(file);
+            var file_name = file.name;
+            var file_size = file.size;
+            var file_type = file.type;
+            console.log(file_name+" , "+file_size+" , "+file_type);
+            if (file_type == "text/csv")
+            {
+
+                var r = new FileReader();
+                r.readAsText(file,"UTF-8");
+                console.log(r);
+            }
+            else
+            {
+                alert("Please select CSV file");
+            }
+
+        }
+
+    }
+</script>
+</body>
+</html>
+
